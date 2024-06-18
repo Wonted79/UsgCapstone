@@ -29,16 +29,17 @@ public class ProductController {
         return new ResponseEntity("새로운 상품등록 완료",HttpStatus.OK);
     }
 
+    @GetMapping("/list")
+    public ResponseEntity listProduct(@RequestParam String productName){
+        System.out.println(productName);
+        List<Product> productlist = productService.findNameList(productName);
+        System.out.println(productlist);
+        return new ResponseEntity(productlist, HttpStatus.OK);
+    }
 
     @GetMapping("/categoryAll")
     public ResponseEntity findByCategory(@RequestParam String category){
         List<Product> productlist = productService.findAllByCategory(category);
-        return  new ResponseEntity(productlist,HttpStatus.OK);
-    }
-
-    @GetMapping("/findProduct")
-    public ResponseEntity findByproductName(@RequestParam String productName){
-        List<Product> productlist = productService.getProductsContaining(productName);
         return  new ResponseEntity(productlist,HttpStatus.OK);
     }
 

@@ -12,6 +12,5 @@ public interface ProductService {
     void createProduct(RegisterProductRequest registerProductRequest);
     List<Product> findAllByCategory(String category);
     List<Product> findNameList(String name);
-    List<Product> getProductsContaining(String infix);
 
 }

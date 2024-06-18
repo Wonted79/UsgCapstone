@@ -54,8 +54,4 @@ public class ProductServiceImpl implements ProductService{
         System.out.println(products);
         return products;
     }
-
-    public List<Product> getProductsContaining(String infix) {
-        return productRepository.findByNameContaining(infix);
-    }
 }

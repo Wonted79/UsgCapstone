@@ -10,7 +10,7 @@ import usg.capstone.server.service.MemberService;
 @RestController
 @RequestMapping("/member")
  //final이 선언된 모든 필드를 인자값으로 하는 생성자 생성
-public class  MemberController {
+public class MemberController {
     private MemberService memberService;
 
     @Autowired

@@ -10,5 +10,4 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, String> {
     List<Product> findByCategory(String category);
     List<Product> findByName(String name);
-    List<Product> findByNameContaining(String infix);
 }
