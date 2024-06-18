@@ -8,6 +8,7 @@ import usg.capstone.server.domain.Product;
 import usg.capstone.server.dto.RegisterProductRequest;
 import usg.capstone.server.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +39,11 @@ public class ProductController {
 
     @GetMapping("/findProduct")
     public ResponseEntity findByproductName(@RequestParam String productName){
+        if (productName == ""){
+            System.out.println("검색어 없음");
+            List<Product> productlist= new ArrayList<>();;
+            return  new ResponseEntity( productlist,HttpStatus.OK);
+        }
         List<Product> productlist = productService.getProductsContaining(productName);
         return  new ResponseEntity(productlist,HttpStatus.OK);
     }
