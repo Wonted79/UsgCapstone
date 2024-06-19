@@ -35,7 +35,7 @@ public class ProductController {
 
     @GetMapping("/categoryAll")
     public ResponseEntity findByCategory(@RequestParam String category){
-        List<Product> productlist = productService.findAllByCategory(category);
+        List<ProductResponse> productlist = productService.findAllByCategory(category);
         return  new ResponseEntity(productlist,HttpStatus.OK);
     }
 

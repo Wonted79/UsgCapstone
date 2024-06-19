@@ -46,9 +46,17 @@ public class ProductServiceImpl implements ProductService{
 
     }
 
-    public List<Product> findAllByCategory(String category){
+    public List<ProductResponse> findAllByCategory(String category){
         List<Product> products = productRepository.findByCategory(category);
-        return products;
+        return products.stream().map(product -> {
+            ProductResponse productResponse = new ProductResponse();
+            productResponse.setId(product.getId());
+            productResponse.setName(product.getName());
+            productResponse.setPrice(product.getPrice());
+            productResponse.setCategory(product.getCategory());
+            productResponse.setImageData(Base64.getEncoder().encodeToString(product.getImageData()));
+            return productResponse;
+        }).collect(Collectors.toList());
     }
 
 
