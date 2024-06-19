@@ -2,6 +2,7 @@ package usg.capstone.server.service;
 
 import org.springframework.http.ResponseEntity;
 import usg.capstone.server.domain.Product;
+import usg.capstone.server.dto.ProductResponse;
 import usg.capstone.server.dto.RegisterProductRequest;
 
 import java.util.List;
@@ -12,6 +13,6 @@ public interface ProductService {
     void createProduct(RegisterProductRequest registerProductRequest);
     List<Product> findAllByCategory(String category);
     List<Product> findNameList(String name);
-    List<Product> getProductsContaining(String infix);
+    List<ProductResponse> getProductsContaining(String infix);
 
 }

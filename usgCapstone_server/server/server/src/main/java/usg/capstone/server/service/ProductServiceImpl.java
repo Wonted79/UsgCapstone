@@ -8,13 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import usg.capstone.server.domain.Product;
 import usg.capstone.server.dto.ProductDTO;
+import usg.capstone.server.dto.ProductResponse;
 import usg.capstone.server.dto.RegisterProductRequest;
 import usg.capstone.server.repository.ProductRepository;
 import usg.capstone.server.util.ImageUtils;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -55,7 +58,20 @@ public class ProductServiceImpl implements ProductService{
         return products;
     }
 
-    public List<Product> getProductsContaining(String infix) {
+    public List<Product> getProductsContaining1(String infix) {
         return productRepository.findByNameContaining(infix);
+    }
+
+    public List<ProductResponse> getProductsContaining(String infix) {
+        List<Product> products = productRepository.findByNameContaining(infix);
+        return products.stream().map(product -> {
+            ProductResponse productResponse = new ProductResponse();
+            productResponse.setId(product.getId());
+            productResponse.setName(product.getName());
+            productResponse.setPrice(product.getPrice());
+            productResponse.setCategory(product.getCategory());
+            productResponse.setImageData(Base64.getEncoder().encodeToString(product.getImageData()));
+            return productResponse;
+        }).collect(Collectors.toList());
     }
 }

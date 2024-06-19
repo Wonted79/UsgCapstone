@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import usg.capstone.server.domain.ImageData;
 import usg.capstone.server.domain.Product;
+import usg.capstone.server.dto.ProductResponse;
 import usg.capstone.server.dto.RegisterProductRequest;
 import usg.capstone.server.service.ProductService;
 
@@ -44,8 +46,8 @@ public class ProductController {
             List<Product> productlist= new ArrayList<>();;
             return  new ResponseEntity( productlist,HttpStatus.OK);
         }
-        List<Product> productlist = productService.getProductsContaining(productName);
-        return  new ResponseEntity(productlist,HttpStatus.OK);
+        List<ProductResponse> productlist = productService.getProductsContaining(productName);
+        return  new ResponseEntity(productlist ,HttpStatus.OK);
     }
 
 }
