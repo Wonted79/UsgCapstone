@@ -51,12 +51,6 @@ public class ProductServiceImpl implements ProductService{
         return products;
     }
 
-    public List<Product> findNameList(String name){
-        //지금보니까 리스트에 안넣은거 같은데..
-        List<Product> products = productRepository.findByName(name);
-        System.out.println(products);
-        return products;
-    }
 
     public List<Product> getProductsContaining1(String infix) {
         return productRepository.findByNameContaining(infix);
