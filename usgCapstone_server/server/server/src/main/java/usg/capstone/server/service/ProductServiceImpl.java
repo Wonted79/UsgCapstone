@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService{
                     .name(productDTO.getName())
                     .price(productDTO.getPrice())
                     .category(productDTO.getCategory())
-                    .imageData(ImageUtils.compressImage(file.getBytes()))
+                    .imageData(file.getBytes())
                     .build();
         } catch (IOException e) {
             throw new RuntimeException(e);
